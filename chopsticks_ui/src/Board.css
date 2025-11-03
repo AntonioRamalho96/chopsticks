@@ -1,0 +1,233 @@
+.board {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  min-width: 400px;
+  height: 100vh;
+  position: relative;
+}
+
+.board-row {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.hand {
+  width: 150px;
+  height: 200px;
+  object-fit: contain;
+  position: relative;
+}
+
+/* Bottom right has no transform - hand as is */
+
+.bottom-left {
+  transform: scaleX(-1);
+}
+
+.top-right {
+  transform: scaleY(-1);
+}
+
+.top-left {
+  transform: scaleX(-1) scaleY(-1);
+}
+
+/* Animation keyframes for moves between positions */
+@keyframes move-top-left-to-bottom-left {
+  0% {
+    transform: translate(0, 0) scaleX(-1) scaleY(-1);
+  }
+  50% {
+    transform: translate(0, 50vh) scaleX(-1) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1) scaleY(-1);
+  }
+}
+
+@keyframes move-top-left-to-bottom-right {
+  0% {
+    transform: translate(0, 0) scaleX(-1) scaleY(-1);
+  }
+  50% {
+    transform: translate(calc(500px * 0.6), 50vh) scaleX(-1) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1) scaleY(-1);
+  }
+}
+
+@keyframes move-top-right-to-bottom-left {
+  0% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+  50% {
+    transform: translate(calc(-500px * 0.6), 50vh) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+}
+
+@keyframes move-top-right-to-bottom-right {
+  0% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+  50% {
+    transform: translate(0, 50vh) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+}
+
+@keyframes move-bottom-left-to-top-left {
+  0% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+  50% {
+    transform: translate(0, -50vh) scaleX(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+}
+
+@keyframes move-bottom-right-to-top-left {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(calc(-500px * 0.6), -50vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes move-bottom-left-to-top-right {
+  0% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+  50% {
+    transform: translate(calc(500px * 0.6), -50vh) scaleX(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+}
+
+@keyframes move-bottom-right-to-top-right {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -50vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Merge animations - both hands move to center and back */
+@keyframes merge-top-left {
+  0% {
+    transform: translate(0, 0) scaleX(-1) scaleY(-1);
+  }
+  50% {
+    transform: translate(calc(500px * 0.3), 0) scaleX(-1) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1) scaleY(-1);
+  }
+}
+
+@keyframes merge-top-right {
+  0% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+  50% {
+    transform: translate(calc(-500px * 0.3), 0) scaleY(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleY(-1);
+  }
+}
+
+@keyframes merge-bottom-left {
+  0% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+  50% {
+    transform: translate(calc(500px * 0.3), 0) scaleX(-1);
+  }
+  100% {
+    transform: translate(0, 0) scaleX(-1);
+  }
+}
+
+@keyframes merge-bottom-right {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(calc(-500px * 0.3), 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Apply animations */
+.hand.animate-top-left-to-bottom-left {
+  animation: move-top-left-to-bottom-left 2s ease-in-out;
+}
+
+.hand.animate-top-left-to-bottom-right {
+  animation: move-top-left-to-bottom-right 2s ease-in-out;
+}
+
+.hand.animate-top-right-to-bottom-left {
+  animation: move-top-right-to-bottom-left 2s ease-in-out;
+}
+
+.hand.animate-top-right-to-bottom-right {
+  animation: move-top-right-to-bottom-right 2s ease-in-out;
+}
+
+.hand.animate-bottom-left-to-top-left {
+  animation: move-bottom-left-to-top-left 2s ease-in-out;
+}
+
+.hand.animate-bottom-right-to-top-left {
+  animation: move-bottom-right-to-top-left 2s ease-in-out;
+}
+
+.hand.animate-bottom-left-to-top-right {
+  animation: move-bottom-left-to-top-right 2s ease-in-out;
+}
+
+.hand.animate-bottom-right-to-top-right {
+  animation: move-bottom-right-to-top-right 2s ease-in-out;
+}
+
+.hand.top-left.animate-merge-top {
+  animation: merge-top-left 2s ease-in-out;
+}
+
+.hand.top-right.animate-merge-top {
+  animation: merge-top-right 2s ease-in-out;
+}
+
+.hand.bottom-left.animate-merge-bottom {
+  animation: merge-bottom-left 2s ease-in-out;
+}
+
+.hand.bottom-right.animate-merge-bottom {
+  animation: merge-bottom-right 2s ease-in-out;
+}
+

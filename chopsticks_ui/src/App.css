@@ -1,0 +1,12 @@
+.mainscreen
+{
+    display: flex;
+    height: 800px;
+    
+}
+
+.interaction_pane{
+    display:  flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
